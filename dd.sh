@@ -1,17 +1,18 @@
-#apt-get update && apt-get install -y nginx mc curl python3-pip git mysql-server mysql-client &&
-#apt-get install -y python3-dev libmysqlclient-dev && 
-#pip3 install django==1.10.5 &&
-#pip3 install gunicorn==19.6.0 &&
-#pip3 install mysqlclient &&
-pip3 install django-autofixture &&
+sudo apt-get update && apt-get install -y nginx mc curl python3-pip git mysql-server mysql-client &&
+sudo apt-get install -y python3-dev libmysqlclient-dev && 
+sudo pip3 install django==1.10.5 &&
+sudo pip3 install gunicorn==19.6.0 &&
+sudo pip3 install mysqlclient &&
+sudo pip3 install django-autofixture &&
+sudo pip install django-autofixture &&
 rm /etc/nginx/sites-available/default && 
 ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-available/default &&
-/etc/init.d/nginx restart &&
-find /var/lib/mysql -type f -exec touch {} \; && service mysql start &&
-#/etc/init.d/mysql start &&
-#mysql -uroot -e "CREATE DATABASE IF NOT EXISTS my_db CHARACTER SET utf8;" &&
-#mysql -uroot -e "create user 'user'@'localhost' identified by '12345';" &&
-#mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';" &&
+sudo /etc/init.d/nginx restart &&
+#find /var/lib/mysql -type f -exec touch {} \; && service mysql start &&
+sudo /etc/init.d/mysql start &&
+mysql -uroot -e "CREATE DATABASE IF NOT EXISTS my_db CHARACTER SET utf8;" &&
+mysql -uroot -e "create user 'user'@'localhost' identified by '12345';" &&
+mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';" &&
 cd /home/box/web &&
 #gunicorn --log-file error_log.log --access-logfile acclog -b 0.0.0.0:8080 -w 4 -D hello:app 
 django-admin.py startproject ask &&
@@ -34,4 +35,4 @@ ln -sf /home/box/web/my.cnf /home/box/web/ask/my.cnf &&
 
 python3 ./manage.py makemigrations && 
 python3 ./manage.py migrate #&&
-#gunicorn --log-file error.log --access-logfile acc.log --log-level debug -b 0.0.0.0:8000  -D ask.wsgi
+gunicorn --log-file error.log --access-logfile acc.log --log-level debug -b 0.0.0.0:8000  -D ask.wsgi
