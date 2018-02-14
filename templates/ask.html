@@ -1,12 +1,17 @@
-{% extends 'base.html' %}
-
-{% block title %}
-{{ block.super }} Ask Question{{ page }}
-{% endblock %}
-
-{% block content %}
-{{ block.super }} 
-
-    {% include "form.html" %}
-    {% csrt_token %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask a new question!</title>
+</head>
+<body>
+    <form method="post" action="/ask/">
+        <fieldset>
+{% csrf_token %}
+{{ form.as_p }}
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </form>
+    <div><a href="/">Return to main page</a></div>
+</body>
+</html>

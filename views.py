@@ -23,7 +23,7 @@ def index(request, *args, **kwargs):
 @require_GET
 def popular(request, *args, **kwargs):
     question_list = Question.objects.order_by('-rating')
-    paginator, page, limit = paginate(request, question_list)    
+    paginator, page, limit = paginate(request, question_list)
     context = {
         'questions': page,
         'paginator': paginator,
@@ -83,4 +83,3 @@ def paginate(request, lst):
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
     return paginator, page, limit
-
