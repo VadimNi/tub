@@ -5,7 +5,7 @@ from .models import Question, Answer
 from datetime import datetime
 
 class AskForm(forms.Form):
-    title = forms.CharField(max_length=255)
+    title = forms.CharField(max_length=1024)
     text = forms.CharField(widget=forms.Textarea)
 
     def clean_title(self):
@@ -23,10 +23,6 @@ class AskForm(forms.Form):
         return text
 
     def save(self):
-        if self._user.is_anonymous():
-            self.cleaned_data['author_id'] = 1
-        else:
-            self.cleaned_data['author'] = self._user
         question = Question(**self.cleaned_data)
         question.save()
         return question

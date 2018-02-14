@@ -9,13 +9,11 @@
 
 {% if question %}
 <div class="question">
-  <form method="POST" action"/question.id/">
     {% csrf_token %}
     <h1>Q{{ question.id }}: {{ question.title }}</h1>
     <h2>Rating: {{ question.rating }}. Added by {{ question.author.username }} on {{ question.added_at }}</h2>
-    
+
     <p>{{ question.text }}</p>
-</form>
 </div>
 {% endif %}
 
@@ -40,5 +38,5 @@
 {% for e in form.non_field_errors %}
   <div class="alert alert-danger">{{ e }}</div>
 {% endfor %}
-
+{% csrf_token %}
 {% endblock %}
