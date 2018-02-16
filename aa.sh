@@ -4,4 +4,4 @@ sudo pip3 install django==1.10.5 &&
 sudo pip3 install gunicorn==19.6.0 &&
 sudo pip3 install mysqlclient &&
 sudo pip3 install django-autofixture &&
-sudo pip install django-autofixture &&
+sudo pip install django-autofixture 
